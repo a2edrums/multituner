@@ -1,0 +1,106 @@
+{
+  "guitar6": {
+    "name": "6-String Guitar",
+    "strings": 6,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["E4", "B3", "G3", "D3", "A2", "E2"]
+      },
+      "dropD": {
+        "name": "Drop D",
+        "notes": ["E4", "B3", "G3", "D3", "A2", "D2"]
+      }
+    }
+  },
+  "guitar7": {
+    "name": "7-String Guitar",
+    "strings": 7,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["E4", "B3", "G3", "D3", "A2", "E2", "B1"]
+      }
+    }
+  },
+  "bass4": {
+    "name": "4-String Bass",
+    "strings": 4,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["G2", "D2", "A1", "E1"]
+      }
+    }
+  },
+  "bass5": {
+    "name": "5-String Bass",
+    "strings": 5,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["G2", "D2", "A1", "E1", "B0"]
+      }
+    }
+  },
+  "bass6": {
+    "name": "6-String Bass",
+    "strings": 6,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["C3", "G2", "D2", "A1", "E1", "B0"]
+      }
+    }
+  },
+  "ukulele": {
+    "name": "Ukulele",
+    "strings": 4,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["A4", "E4", "C4", "G4"]
+      }
+    }
+  },
+  "mandolin": {
+    "name": "Mandolin",
+    "strings": 8,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["E5", "E5", "A4", "A4", "D4", "D4", "G3", "G3"]
+      }
+    }
+  },
+  "banjo": {
+    "name": "Banjo",
+    "strings": 5,
+    "tunings": {
+      "standard": {
+        "name": "Open G",
+        "notes": ["D4", "B3", "G3", "D3", "G4"]
+      }
+    }
+  },
+  "violin": {
+    "name": "Violin",
+    "strings": 4,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["E5", "A4", "D4", "G3"]
+      }
+    }
+  },
+  "cello": {
+    "name": "Cello",
+    "strings": 4,
+    "tunings": {
+      "standard": {
+        "name": "Standard",
+        "notes": ["A3", "D3", "G2", "C2"]
+      }
+    }
+  }
+}
