@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import instrumentsData from '../data/instruments.json';
 
 export function useInstrumentData() {
   const [instruments] = useState(instrumentsData);
-  const [selectedInstrument, setSelectedInstrument] = useState('guitar');
+  const [selectedInstrument, setSelectedInstrument] = useState('guitar6');
   const [selectedTuning, setSelectedTuning] = useState('standard');
 
   const getCurrentInstrument = () => {
