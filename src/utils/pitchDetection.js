@@ -66,10 +66,10 @@ export function detectPitch(audioBuffer, sampleRate) {
 }
 
 // Convert frequency to note name
-export function frequencyToNote(frequency) {
+export function frequencyToNote(frequency, referenceFreq = 440) {
   if (!frequency || frequency <= 0) return null;
   
-  const A4 = 440;
+  const A4 = referenceFreq;
   const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
   
   const noteNumber = 12 * Math.log2(frequency / A4) + 69;

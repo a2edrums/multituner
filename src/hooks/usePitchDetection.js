@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { detectPitch, frequencyToNote } from '../utils/pitchDetection';
 
-export function usePitchDetection(getAudioData, getSampleRate, isActive = true) {
+export function usePitchDetection(getAudioData, getSampleRate, isActive = true, referenceFreq = 440) {
   const [frequency, setFrequency] = useState(null);
   const [note, setNote] = useState(null);
   const intervalRef = useRef();
@@ -35,7 +35,7 @@ export function usePitchDetection(getAudioData, getSampleRate, isActive = true) 
           
           // Calculate smoothed frequency
           const smoothedFreq = frequencyHistoryRef.current.reduce((a, b) => a + b, 0) / frequencyHistoryRef.current.length;
-          const detectedNote = frequencyToNote(smoothedFreq);
+          const detectedNote = frequencyToNote(smoothedFreq, referenceFreq);
           
           setFrequency(smoothedFreq);
           setNote(detectedNote);
@@ -51,7 +51,7 @@ export function usePitchDetection(getAudioData, getSampleRate, isActive = true) 
         clearInterval(intervalRef.current);
       }
     };
-  }, [getAudioData, getSampleRate, isActive]);
+  }, [getAudioData, getSampleRate, isActive, referenceFreq]);
 
   return { frequency, note };
 }

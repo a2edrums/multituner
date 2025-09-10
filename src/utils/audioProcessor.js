@@ -8,17 +8,23 @@ export class AudioProcessor {
     this.bufferLength = 2048;
   }
 
-  async initialize() {
+  async initialize(deviceId = null) {
     try {
       this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
       
-      const stream = await navigator.mediaDevices.getUserMedia({ 
+      const constraints = {
         audio: {
           echoCancellation: false,
           noiseSuppression: false,
           autoGainControl: false
-        } 
-      });
+        }
+      };
+      
+      if (deviceId) {
+        constraints.audio.deviceId = { exact: deviceId };
+      }
+      
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
       
       this.microphone = this.audioContext.createMediaStreamSource(stream);
       this.analyser = this.audioContext.createAnalyser();

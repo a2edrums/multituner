@@ -4,12 +4,30 @@ import { AudioProcessor } from '../utils/audioProcessor';
 export function useAudioInput() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [error, setError] = useState(null);
+  const [audioDevices, setAudioDevices] = useState([]);
+  const [selectedDeviceId, setSelectedDeviceId] = useState('');
   const audioProcessorRef = useRef(null);
 
-  const initialize = async () => {
+  const getAudioDevices = async () => {
     try {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const audioInputs = devices.filter(device => device.kind === 'audioinput');
+      setAudioDevices(audioInputs);
+      if (audioInputs.length > 0 && !selectedDeviceId) {
+        setSelectedDeviceId(audioInputs[0].deviceId);
+      }
+    } catch (err) {
+      console.error('Error enumerating devices:', err);
+    }
+  };
+
+  const initialize = async (deviceId = selectedDeviceId) => {
+    try {
+      if (audioProcessorRef.current) {
+        audioProcessorRef.current.dispose();
+      }
       audioProcessorRef.current = new AudioProcessor();
-      const success = await audioProcessorRef.current.initialize();
+      const success = await audioProcessorRef.current.initialize(deviceId);
       
       if (success) {
         setIsInitialized(true);
@@ -19,6 +37,13 @@ export function useAudioInput() {
       }
     } catch (err) {
       setError(err.message);
+    }
+  };
+
+  const changeDevice = async (deviceId) => {
+    setSelectedDeviceId(deviceId);
+    if (isInitialized) {
+      await initialize(deviceId);
     }
   };
 
@@ -38,10 +63,17 @@ export function useAudioInput() {
     };
   }, []);
 
+  useEffect(() => {
+    getAudioDevices();
+  }, [selectedDeviceId]);
+
   return {
     isInitialized,
     error,
+    audioDevices,
+    selectedDeviceId,
     initialize,
+    changeDevice,
     getAudioData,
     getSampleRate
   };
