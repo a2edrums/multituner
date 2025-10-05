@@ -73,7 +73,7 @@ function TunerDisplay() {
           />
           <div className="text-center mt-4">
             <p className="mb-2">powered by:</p>
-            <img alt="logo" src={logo} />
+            <a href="https://a2edrums.com" target="_blank" rel="noreferrer"><img alt="logo" src={logo} /></a>
           </div>
         </Col>
       </Row>
